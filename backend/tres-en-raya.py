@@ -25,7 +25,8 @@ def index():
 @app.route("/move", methods=["POST"])
 def move():
     board = request.json["board"]
-    winner = check_winner(board)
+    ganador = check_winner(board)
+    print("aqui va un print")
 
     return jsonify({
         "winner": winner
@@ -36,6 +37,8 @@ def reset_game():
     return jsonify({
         "board": reset()
     })
+
+print("Hello world")
     
 
 if __name__ == "__main__":
