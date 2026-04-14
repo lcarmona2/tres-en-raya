@@ -1,7 +1,6 @@
-from flask import Flask, request, jsonify, send_from_directory
-import os
+from flask import Flask, request, jsonify
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='../frontend', static_url_path='')
 
 def check_winner(board):
     wins = [
@@ -19,15 +18,9 @@ def check_winner(board):
 def reset():
     return [""] * 9
 
-@app.route ('/', Methods=['GET'])
+@app.route('/', methods=['GET'])
 def index():
-    build_dir = os.path.join(os.path.dirname(__file__), "frontend", "build")
-    index_path = os.path.join(build_dir, "index.html")
-
-    if os.path.exists(index_path):
-        return send_from_directory(build_dir, "index.html")
-    else:
-        return "⚙️ PQC API is running (sin frontend build)", 200
+    return app.send_static_file('index.html')
 
 @app.route("/move", methods=["POST"])
 def move():
