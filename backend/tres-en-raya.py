@@ -39,11 +39,7 @@ def reset_game():
     })
 
 print("Hello world")
-<<<<<<< Updated upstream
-    
-=======
 print("Hello world2")
->>>>>>> Stashed changes
 
 if __name__ == "__main__":
     app.run(debug=True)
