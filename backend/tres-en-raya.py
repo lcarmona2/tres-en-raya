@@ -1,5 +1,4 @@
 from flask import Flask, request, jsonify
-import random
 
 app = Flask(__name__, static_folder='../frontend', static_url_path='')
 
@@ -11,21 +10,13 @@ def check_winner(board):
     ]
 
     for a,b,c in wins:
-        if board[a] == board[b] == board[c] and board[a] != "":
+        if board[o] == board[b] == board[c] and board[a]  "":
             return board[a]
 
     return None
 
 def reset():
     return [""] * 9
-
-# 👉 FUNCIÓN NUEVA (IA muy básica)
-def bot_move(board):
-    for i in range(9):
-        if board[i] == "":
-            board[i] = "O"  # la IA juega con O
-            return board
-    return board
 
 @app.route('/', methods=['GET'])
 def index():
@@ -34,18 +25,11 @@ def index():
 @app.route("/move", methods=["POST"])
 def move():
     board = request.json["board"]
-
-    # comprobar si ya hay ganador antes del bot
     ganador = check_winner(board)
-
-    if not ganador:
-        board = bot_move(board)  # 👉 movimiento automático
-
-    ganador = check_winner(board)
+    print("aqui va un print")
 
     return jsonify({
-        "board": board,
-        "winner": ganador
+        "winner": winner
     })
 
 @app.route("/reset", methods=["POST"])
@@ -55,6 +39,7 @@ def reset_game():
     })
 
 print("Hello world")
+    
 
 if __name__ == "__main__":
     app.run(debug=True)
