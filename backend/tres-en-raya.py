@@ -2,6 +2,12 @@ from flask import Flask, request, jsonify
 
 app = Flask(__name__, static_folder='../frontend', static_url_path='')
 
+# 🆕 Contador global de victorias
+scores = {
+    "X": 0,
+    "O": 0
+}
+
 def check_winner(board):
     wins = [
         [0,1,2],[3,4,5],[6,7,8],
@@ -9,8 +15,8 @@ def check_winner(board):
         [0,4,8],[2,4,6]
     ]
 
-    for a,b,c in wins:
-        if board[o] == board[b] == board[c] and board[a]  "":
+    for a, b, c in wins:
+        if board[a] == board[b] == board[c] and board[a] != "":
             return board[a]
 
     return None
@@ -25,11 +31,15 @@ def index():
 @app.route("/move", methods=["POST"])
 def move():
     board = request.json["board"]
-    ganador = check_winner(board)
-    print("aqui va un print")
+    winner = check_winner(board)
+
+    # 🆕 Si hay ganador, sumamos punto
+    if winner in scores:
+        scores[winner] += 1
 
     return jsonify({
-        "winner": winner
+        "winner": winner,
+        "scores": scores
     })
 
 @app.route("/reset", methods=["POST"])
@@ -38,8 +48,17 @@ def reset_game():
         "board": reset()
     })
 
-print("Hello world")
-print("Hello world2")
+# 🆕 Obtener marcador
+@app.route("/scores", methods=["GET"])
+def get_scores():
+    return jsonify(scores)
+
+# 🆕 Resetear marcador
+@app.route("/reset_scores", methods=["POST"])
+def reset_scores():
+    global scores
+    scores = {"X": 0, "O": 0}
+    return jsonify(scores)
 
 if __name__ == "__main__":
     app.run(debug=True)
