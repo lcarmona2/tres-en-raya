@@ -49,11 +49,11 @@ const makeMove = (row, col, btn) => {
 const victoryCounts = { X: 0, O: 0 };
 
 const updateVictoryCounts = () => {
-    fetch('/get_scores')
+    fetch('/scores')
     .then(response => response.json())
     .then(data => {
-        victoryCounts.X = data.x_wins;
-        victoryCounts.O = data.o_wins;
+        victoryCounts.X = data.X;
+        victoryCounts.O = data.O;
         document.getElementById('x-wins').textContent = victoryCounts.X;
         document.getElementById('o-wins').textContent = victoryCounts.O;
     });
