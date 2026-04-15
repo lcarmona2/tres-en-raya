@@ -1,6 +1,6 @@
 from flask import Flask, request, jsonify
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='../frontend', static_url_path='')
 
 def check_winner(board):
     wins = [
@@ -9,19 +9,37 @@ def check_winner(board):
         [0,4,8],[2,4,6]
     ]
 
-    for a,b,c in wins:
+    for a, b, c in wins:
         if board[a] == board[b] == board[c] and board[a] != "":
             return board[a]
 
     return None
+
+def reset():
+    return [""] * 9
+
+@app.route('/', methods=['GET'])
+def index():
+    return app.send_static_file('index.html')
 
 @app.route("/move", methods=["POST"])
 def move():
     board = request.json["board"]
     winner = check_winner(board)
 
+    # 🆕 Si hay ganador, sumamos punto
+    if winner in scores:
+        scores[winner] += 1
+
     return jsonify({
-        "winner": winner
+        "winner": winner,
+        "scores": scores
+    })
+
+@app.route("/reset", methods=["POST"])
+def reset_game():
+    return jsonify({
+        "board": reset()
     })
 
 if __name__ == "__main__":
