@@ -41,6 +41,7 @@ const makeMove = (row, col, btn) => {
             winnerDisplay.textContent = `Winner: ${data.winner}`;
             turnInfo.textContent = '';
             document.querySelectorAll('.cell').forEach(cell => cell.disabled = true);
+            updateVictoryCounts();
         }
     });
 }
