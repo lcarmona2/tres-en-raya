@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="scripts.js" defer></script>
+</head>
+<body>
+    <div id="header">
+        <button id="new-game-btn" onclick="resetGame()">New Game</button>
+    </div>
+    <div id="game-board">
+        <button class="cell" onclick="makeMove(0, 0, this)"></button>
+        <button class="cell" onclick="makeMove(0, 1, this)"></button>
+        <button class="cell" onclick="makeMove(0, 2, this)"></button>
+
+        <button class="cell" onclick="makeMove(1, 0, this)"></button>
+        <button class="cell" onclick="makeMove(1, 1, this)"></button>
+        <button class="cell" onclick="makeMove(1, 2, this)"></button>
+
+        <button class="cell" onclick="makeMove(2, 0, this)"></button>
+        <button class="cell" onclick="makeMove(2, 1, this)"></button>
+        <button class="cell" onclick="makeMove(2, 2, this)"></button>
+    </div>
+    <div id="game-info">
+        <p id="turn-info">Turn: X</p>
+        <p id="winner-info"></p>    
+    </div>
+    <div>
+        <p>victorias de X: <span id="x-wins">0</span></p>
+        <p>victorias de O: <span id="o-wins">0</span></p>
+    </div>
+</body>
+</html>
