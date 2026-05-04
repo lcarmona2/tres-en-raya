@@ -7,8 +7,6 @@ scores = {
     "X": 0,
     "O": 0
 }
-# tro prueba
-# checeo de ganador 
 def check_winner(board):
     wins = [
         [0,1,2],[3,4,5],[6,7,8],
