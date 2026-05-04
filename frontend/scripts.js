@@ -20,7 +20,6 @@ const resetGame = () => {
     });
 }
 
-// Función para manejar el movimiento del jugador
 const makeMove = (row, col, btn) => {
     if (btn.textContent !== '') return;
 
