@@ -4,6 +4,7 @@ let currentPlayer = 'X';
 
 const turnInfo = document.getElementById('turn-info');
 const winnerDisplay = document.getElementById('winner-info');
+// Inicializar el tablero al cargar la página
 
 const resetGame = () => {
     fetch('/reset', { method: 'POST' })
