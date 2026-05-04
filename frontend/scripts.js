@@ -22,6 +22,9 @@ const resetGame = () => {
     });
 }
 
+// un comentario
+// otro comentario
+
 const makeMove = (row, col, btn) => {
     if (btn.textContent !== '') return;
 
