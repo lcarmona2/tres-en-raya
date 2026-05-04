@@ -8,7 +8,7 @@ scores = {
     "O": 0
 }
 
-# checeo de ganador 
+# checkeo de ganador definitivo 
 def check_winner(board):
     wins = [
         [0,1,2],[3,4,5],[6,7,8],
