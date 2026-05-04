@@ -28,7 +28,6 @@ def reset():
 def index():
     return app.send_static_file('index.html')
 
-# 🆕 Endpoint para manejar movimientos y actualizar marcador
 @app.route("/move", methods=["POST"])
 def move():
     board = request.json["board"]
